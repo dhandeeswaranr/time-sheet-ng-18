@@ -1,13 +1,13 @@
 import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, GuardResult, MaybeAsync, RouterStateSnapshot, UrlTree } from '@angular/router';
 import {CommunicationService} from '@communication_service';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
 
-export class AuthGurad implements CanActivate  {
+/*export class AuthGurad implements CanActivate  {
   userInfo:any;
   constructor(private global:CommunicationService){
     console.log("sessionStorage.getItem", sessionStorage.getItem("user"))
@@ -26,7 +26,7 @@ export class AuthGurad implements CanActivate  {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
     console.log('thi', this.userInfo)
-    if(this.userInfo.role){
+    if(this.userInfo.role && this.userInfo.access_token && this.userInfo.email){
       return true
     }
     
@@ -34,15 +34,27 @@ export class AuthGurad implements CanActivate  {
     
   }
 
+
   
-  
 
-  // public async isAccessAllowed():Promise<Boolean | UrlTree>{
-  //   return true;
-  // }
-}
+}*/
 
-
+export const authGuard: CanActivateFn = (route, state) => {
+  let userInfo:any;
+  console.log('route, state', route, state)
+  const communication_service = inject(CommunicationService)
+  let data:any = sessionStorage.getItem("user")
+  userInfo = JSON.parse(data)
+  /*communication_service.getUserData().subscribe((res:any) => {
+    console.log("--------------", res, userInfo)
+    if(res){
+    }
+  })*/
+  if(userInfo.role && userInfo.access_token && userInfo.email){
+    return true
+  }
+  return false;
+};
 
 
 
