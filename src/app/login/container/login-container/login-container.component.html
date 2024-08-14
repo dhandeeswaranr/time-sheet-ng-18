@@ -1,0 +1,14 @@
+@if(view === 'login-screen'){
+    <app-login-form 
+    (loginInfo)="$loginInfo($event)"
+    (screen)="$viewScreen($event)">
+    </app-login-form>
+}
+
+@if(view === 'forget-screen'){
+<app-forget-password (screen)="$viewScreen($event)"></app-forget-password>
+}
+
+@if(view === 'signup-screen'){
+<app-signup></app-signup>
+}

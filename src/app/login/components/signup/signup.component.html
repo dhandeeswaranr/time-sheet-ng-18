@@ -1,0 +1,29 @@
+<div class=" d-flex align-items-center justify-content-center min-vh-100">
+    <div class="container">
+            <div class="row">
+                <div class="col-lg-4 offset-lg-4 col-sm-12">
+                    <p-panel header="Signup">
+                        <div class="row">
+                            <div class="col-12 d-flex  align-items-center justify-content-center ">
+                                <div  class="text-center p-4" [formGroup]="signupForm">
+                                    <p-floatLabel class="d-block mb-2 mt-2">
+                                        <input id="username" formControlName="username" type="text" pInputText />
+                                        <label for="username">Username / email</label>
+                                    </p-floatLabel>
+                                    <p-floatLabel  class="d-block mb-2 mt-4">
+                                        <input id="password" formControlName="password" type="password" pInputText />
+                                        <label for="password">Password</label>
+                                    </p-floatLabel>
+                                    <p-button class="d-block mb-2 mt-4" [disabled]="!signupForm.valid" label="Update" icon="pi pi-key" (click)="loginClick()" />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p-button label="Login" [text]="true" (click)="viewScreen('login-screen')" />
+                        </div>
+                    </p-panel>
+                </div>
+            </div>
+        </div>
+</div>
+
